@@ -12,7 +12,17 @@ node with the examples below.
 Example
 ***********************************************************************/
 
+// function intervalCount(cb, delay, amount) {
+//   const interval = setInterval(times => {
+//     cb()
+//     amount--
+//     if (amount === 0) clearInterval(interval)
+//   }, delay)
+// }
 
+function intervalCount(cb, delay, amount) {
+  const interval = setInterval(() => amount > 0 ? typeof (amount--) === "number" ? cb() : null : clearInterval(interval), delay)
+}
 
 // made one liner cuz why not
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
