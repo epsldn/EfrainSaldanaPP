@@ -21,19 +21,21 @@ const slowerGoodbye = postpone(sayGoodbye, 1750);
 console.log(slowerGoodbye); // [Function]
 slowerGoodbye(); // prints 'bye' after 1750 ms
 ***********************************************************************/
-
-function postpone(cb, delay) {
-  return function () { setTimeout(cb, delay) }
+function postpone(cb, delay){
+  return function innerfunc(){
+    setTimeout(cb, delay)
+  }
 }
-// const sayHello = () => console.log('hi');
-// const slowHello = postpone(sayHello, 1000);
-// console.log(slowHello); // [Function]
-// slowHello(); // prints 'hi' after 1000 ms
 
-// const sayGoodbye = () => console.log('bye');
-// const slowerGoodbye = postpone(sayGoodbye, 1750);
-// console.log(slowerGoodbye); // [Function]
-// slowerGoodbye(); // prints 'bye' after 1750 ms
+const sayHello = () => console.log('hi');
+const slowHello = postpone(sayHello, 1000);
+console.log(slowHello); // [Function]
+slowHello(); // prints 'hi' after 1000 ms
+
+const sayGoodbye = () => console.log('bye');
+const slowerGoodbye = postpone(sayGoodbye, 1750);
+console.log(slowerGoodbye); // [Function]
+slowerGoodbye(); // prints 'bye' after 1750 ms
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
   module.exports = postpone;
