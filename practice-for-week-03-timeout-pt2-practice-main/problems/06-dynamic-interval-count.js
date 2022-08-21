@@ -14,17 +14,24 @@ Examples:
 ***********************************************************************/
 
 function dynamicIntervalCount(cb, delay, amount) {
-  const interval = setInterval(function(){
-    if(amount === undefined) setInterval(cb,delay);
-    cb();
-    amount--;
-    if(amount === 0) clearInterval(interval)
-  }, delay)
-
-  console.log(interval)
-  return interval
+  if (amount === undefined) {
+    return setInterval(cb, delay)
+  } else {
+    let interval = setInterval(() => {
+      if (amount === 0) return clearInterval(interval)
+      cb()
+      amount--
+    }, delay)
+  }
 }
 
+// dynamicIntervalCount(function () {
+//   console.log('hi');
+// }, 500, 3); // prints 'hi' at 500ms intervals a total of 3 times
+// const timeoutObject = dynamicIntervalCount(function() {
+//   console.log('hi');
+// }, 500); // prints 'hi' at 500ms intervals indefinitely
+// console.log(timeoutObject); // Timeout { ... }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
